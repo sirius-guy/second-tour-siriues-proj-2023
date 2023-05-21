@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystem.Web", "ShoppingSystem.Web\ShoppingSystem.Web.csproj", "{376B070A-88DF-45DC-8124-AC30AA745ACC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{376B070A-88DF-45DC-8124-AC30AA745ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{376B070A-88DF-45DC-8124-AC30AA745ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{376B070A-88DF-45DC-8124-AC30AA745ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{376B070A-88DF-45DC-8124-AC30AA745ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

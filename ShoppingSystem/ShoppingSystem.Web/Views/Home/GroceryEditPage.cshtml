@@ -1,0 +1,80 @@
+@model EditViewModel
+
+<div class="container is-fluid">
+    <h2 class="subtitle">Изменение продукта</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title">Изменить продукт</p>
+        </div>
+        <div class="card-content">
+            <form method="post" action="/groceries/edit/@Model.Id">
+                <input name="id" value="@Model.Id" type="hidden"/>
+                
+                <input placeholder="Название продукта" 
+                       class="input" 
+                       name="name"
+                       value="@Model.Grocery.Title" />
+
+                <br/>
+                <br/>
+
+                <div class="control has-icons-left">
+                    <div class="select">
+                        <select name="category">
+                            <optgroup label="Выберите категорию">
+                                @foreach (var c in Model.Categories)
+                                {
+                                    if (c.Id == Model.Grocery.Category.Id)
+                                    {
+                                        <option selected value="@c.Id">@c.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@c.Id">@c.Text</option>
+                                    }
+                                }
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <span class="icon is-medium is-left">
+                        <i data-feather="tag"></i>
+                    </span>
+                </div>
+
+                <br/>
+
+                <div class="control has-icons-left">
+                    <div class="select">
+                        <select name="list">
+                            <optgroup label="Выберите список продуктов">
+                                @foreach (var l in Model.ShoppingLists)
+                                {
+                                    if (l.Id == Model.Grocery.ShoppingList.Id)
+                                    {
+                                        <option selected value="@l.Id">@l.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@l.Id">@l.Text</option>
+                                    }
+                                }
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <span class="icon is-medium is-left">
+                        <i data-feather="list"></i>
+                    </span>
+                </div>
+
+                <br/>
+
+                <input class="button is-info" value="Изменить" type="submit"/>
+            </form>
+        </div>
+    </div>
+
+    <br/>
+</div>

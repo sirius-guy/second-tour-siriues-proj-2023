@@ -1,0 +1,85 @@
+@model ListViewModel
+
+<div class="container is-fluid">
+    <h2 class="subtitle">Продукты в списке @Model.List.Text (@Model.GroceriesCount шт.)</h2>
+    <h2 class="subtitle">Куплено: @Model.BoughtCount продукт(ов)</h2>
+
+    <div class="control has-icons-left">
+        <div class="select">
+            <select name="category">
+                <optgroup label="Выберите категорию">
+                    @foreach (var c in Model.Categories)
+                    {
+                        <option value="@c.Id" onclick="openFilteredByCategory(@Model.List.Id, @c.Id)">@c.Text</option>
+                    }
+                </optgroup>
+            </select>
+        </div>
+    
+        <span class="icon is-medium is-left">
+            <i data-feather="tag"></i>
+        </span>
+    </div>
+
+    <br/>
+    
+    @foreach (var grocery in Model.Groceries)
+    {
+        <div class="card">
+            <div class="card-header">
+                <p class="card-header-title">@grocery.Name</p>
+            </div>
+            <div class="card-content">
+                <div class="select">
+                    <select name="categories" onchange="updateState(@grocery.Id, this.options[this.selectedIndex].value)">
+                        <optgroup label="Состояние">
+                            @switch (grocery.State)
+                            {
+                                case "scheduled":
+                                    <option value="scheduled" selected>Запланирован</option>
+                                    <option value="inCart">Лежит в корзине</option>
+                                    <option value="bought">Куплен</option>
+                                    break;
+                                case "inCart":
+                                    <option value="scheduled">Запланирован</option>
+                                    <option value="inCart" selected>Лежит в корзине</option>
+                                    <option value="bought">Куплен</option>
+                                    break;
+                                case "bought":
+                                    <option value="scheduled">Запланирован</option>
+                                    <option value="inCart">Лежит в корзине</option>
+                                    <option value="bought" selected>Куплен</option>
+                                    break;
+                            }
+                        </optgroup>
+                    </select>
+                </div>
+
+                <a href="/groceryEditPage/@grocery.Id" class="button">Изменить</a>
+                <a href="/groceries/delete/@grocery.Id" class="button is-danger">Удалить</a>
+                
+                <br/>
+                <br/>
+                
+                <p>Категория: @grocery.Category</p>
+                
+                <br/>
+
+                <strong>Создан: @grocery.CreationDateTime.ToString("d") . Изменен: @grocery.UpdateDateTime.ToString("d") </strong>
+            </div>
+        </div>
+
+        <br/>
+    }
+</div>
+
+<script>
+async function updateState(id, state)
+{
+    await fetch("/groceries/updateStatus/"+id+"/"+state);
+}
+function openFilteredByCategory(id, categoryId)
+{
+    window.location = '/lists/' + id + '/' + categoryId;
+}
+</script>

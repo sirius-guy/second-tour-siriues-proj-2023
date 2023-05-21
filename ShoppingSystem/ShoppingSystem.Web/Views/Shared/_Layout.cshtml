@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - Система для похода в магазин</title>
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<header class="container is-fluid">
+    <br/>
+    <h1 class="title">Система для похода в магазин</h1>
+    <div>
+        <a href="/">Списки</a>
+        <span>•</span>
+        <a href="/categories">Категории</a>
+        <span>•</span>
+        <a href="/add">Добавить продукт</a>
+        <span>•</span>
+        <a href="/export/csv">Экспортировать в CSV</a>
+    </div>
+    <hr/>
+</header>
+
+<body>
+@RenderBody()
+<script>
+      feather.replace()
+</script>
+
+</body>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+          <strong>Система для похода в магазин</strong> сделана участником олимпиады IT-раунд. Распростроняется только среди людей, проверяющих второй тур 😇
+        </p>
+      </div>
+</footer>
+</body>
+</html>

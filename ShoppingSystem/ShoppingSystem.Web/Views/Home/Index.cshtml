@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Домашняя страница";
+}
+
+@model IndexViewModel
+
+<div class="container is-fluid">
+    <h2 class="subtitle">Продукты</h2>
+
+    <div class="control has-icons-left">
+        <div class="select">
+            <select name="categories">
+                <optgroup label="Фильтровать по категории">
+                    <option value="all">Все продукты</option>
+                    <option value="category2">Категория 2</option>
+                    <option value="category3">Категория 3</option>
+                </optgroup>
+            </select>
+        </div>
+                            
+        <span class="icon is-medium is-left">
+            <i data-feather="tag"></i>
+        </span>
+    </div>
+
+    <br/>
+    
+    @foreach (var grocery in Model.Groceries)
+    {
+        <div class="card">
+            <div class="card-header">
+                <p class="card-header-title">@grocery.Title</p>
+            </div>
+            <div class="card-content">
+                <p>
+                    В категории <a href="/categories/@grocery.Category.Id">«@grocery.Category.Text»</a> в списке продуктов <a href="/lists/@grocery.Id">«@grocery.ShoppingList.Text»</a>.
+                </p>
+                <br/>
+                
+                <div class="select">
+                    <select name="statuses">
+                        <option value="scheduled">Запланирован</option>
+                        <option value="inTheCart">Лежит в корзине</option>
+                        <option value="bought">Куплен</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    
+        <br/>
+    }
+    
+</div>

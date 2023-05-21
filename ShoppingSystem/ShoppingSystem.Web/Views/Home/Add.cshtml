@@ -1,0 +1,61 @@
+@model AddViewModel
+
+<div class="container is-fluid">
+    <h2 class="subtitle">Добавление продукта</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title">Добавить продукт</p>
+        </div>
+        <div class="card-content">
+            <form method="post" action="/groceries/add">
+                <input placeholder="Название продукта" class="input" name="name"/>
+
+                <br/>
+                <br/>
+
+                <div class="control has-icons-left">
+                    <div class="select">
+                        <select name="category">
+                            <optgroup label="Выберите категорию">
+                                @foreach (var c in Model.Categories)
+                                {
+                                    <option value="@c.Id">@c.Text</option>
+                                }
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <span class="icon is-medium is-left">
+                        <i data-feather="tag"></i>
+                    </span>
+                </div>
+
+                <br/>
+
+                <div class="control has-icons-left">
+                    <div class="select">
+                        <select name="list">
+                            <optgroup label="Выберите список продуктов">
+                                @foreach (var l in Model.ShoppingLists)
+                                {
+                                    <option value="@l.Id">@l.Text</option>
+                                }
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <span class="icon is-medium is-left">
+                        <i data-feather="list"></i>
+                    </span>
+                </div>
+
+                <br/>
+
+                <input class="button is-info" value="Добавить" type="submit"/>
+            </form>
+        </div>
+    </div>
+
+    <br/>
+</div>

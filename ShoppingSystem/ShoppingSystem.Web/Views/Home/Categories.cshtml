@@ -1,0 +1,28 @@
+@using ShoppingSystem.Web.Persistence.Entities
+
+<div class="container is-fluid">
+    <h2 class="subtitle">Категории</h2>
+
+    <form method="post" action="/categories/add">
+        <input placeholder="Имя категории" name="text" type="text" class="input"/>
+        <br/>
+        <br/>
+        <input type="submit" class="button is-info" value="Добавить категорию"/>
+    </form>
+    
+    <br/>
+    
+    @foreach (Category category in ViewBag.Categories)
+    {
+        <div class="card">
+            <div class="card-header">
+                <p class="card-header-title">@category.Text</p>
+            </div>
+            
+            <div class="card-content">
+                <a href="/categories/delete/@category.Id" class="button is-danger">Удалить</a>
+            </div>
+        </div>
+        <br/>
+    }
+</div>
